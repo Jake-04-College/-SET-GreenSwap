@@ -1,0 +1,104 @@
+.image-container {
+  padding: 30px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  row-gap: 25px;
+}
+
+.image-box {
+  border: 1px solid rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  min-height: 480px;
+  min-width: 290px;
+  max-width: 290px;
+  max-height: 480px;
+  padding: 20px;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.257);
+}
+
+.image-box h3 {
+  color: rgb(0, 0, 0);
+  text-align: left;
+  font-size: 20px;
+  font-family: "Oswald", sans-serif;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.image-box p {
+  color: rgb(0, 0, 0);
+  text-align: left;
+  padding-left: 20px;
+  margin: 5px;
+  font-size: 25px;
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+}
+
+.image-box img {
+  border-radius: 20px;
+  max-width: 250px;
+  max-height: 240px;
+}
+
+.image-box button{
+  
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+
+.buy {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-right: 0px;
+}
+
+.buy-button h3 {
+  background-color: #14a943;
+  border-radius: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  color: white;
+}
+
+.buy-button button {
+  border: 0px;
+  background-color: white;
+}
+
+h2 {
+  text-align: center;
+  text-decoration: solid;
+}
+
+.view-more-button {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.view-more-button button {
+  padding: 14px 32px;
+  font-size: 1.2rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-more-button button:hover {
+  background-color: #218838;
+}

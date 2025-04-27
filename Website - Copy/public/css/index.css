@@ -1,0 +1,255 @@
+body {
+  background-color: #ecf0fa68;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 1100px;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  ul {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  li {
+    margin: 5px 0;
+  }
+}
+
+.container {
+  background-color: black;
+  padding: 0%;
+  height: 30px;
+  align-items: center;
+  position: sticky;
+  top: 0px;
+}
+
+.banner {
+  width: 100%;
+  text-align: center;
+}
+
+#image {
+  max-width: 100px;
+  height: auto;
+  display: block;
+  margin-right: 0%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+  padding-top: 6px;
+}
+
+li {
+  margin: 0 10px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+h1 {
+  color: rgb(2, 2, 2);
+  padding-top: 10px;
+  font-size: 50px;
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
+}
+
+p {
+  font-family: "Open Sans", sans-serif;
+}
+
+.image-container {
+  padding: 30px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  row-gap: 25px;
+}
+
+.image-box {
+  border: 1px solid rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  width: 290px;
+  padding: 20px;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.257);
+}
+
+.image-box h3 {
+  color: rgb(0, 0, 0);
+  text-align: left;
+  font-size: 25px;
+  font-family: "Oswald", sans-serif;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.image-box p {
+  color: rgb(0, 0, 0);
+  text-align: left;
+  padding-left: 20px;
+  font-size: 25px;
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+}
+
+.image-box img {
+  border-radius: 20px;
+  
+}
+
+.buy {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-right: 0px;
+}
+
+.buy-button h3 {
+  background-color: #14a943;
+  border-radius: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  color: white;
+}
+
+.buy-button button{
+  border: 0px;
+  background-color: white;
+}
+
+.how-it-works {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 25px;
+  padding: 20px;
+
+}
+
+.how-it-works img {
+  padding-top: 10px;
+}
+
+.how-it-works h4 {
+  font-size: 32px;
+}
+
+.header-text {
+  text-align: unset;
+  font-size: 4em;
+  padding: 10px;
+}
+
+.how-it-works div {
+  width: 31%;
+  height: 30%;
+  text-align: center;
+  align-items: center;
+  border: 3px solid #14a943;
+  border-radius: 20px;
+  line-height: 2px;
+  font-size: 16px;
+  word-wrap: break-word;
+  white-space: normal;
+
+}
+
+.image-container-header img {
+  margin: 0 auto;
+  width: 100%;
+  height: 780px;
+  border-bottom: 15px solid grey;
+}
+
+.image-container-header h1 {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+  font-family: 'Open Sans', sans-serif;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.Front_page_info-header h2 {
+    position: absolute;
+    top: 32%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    font-weight: 700;
+    font-family: 'Open Sans', sans-serif;
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+.image-container-header h2 {
+    position: absolute;    
+    top: 31%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    font-weight: 700;
+    font-family: 'Open Sans', sans-serif;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.image-container-header p {
+    position: absolute;    
+    top: 35.5%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    font-weight: 700;
+    font-family: 'Open Sans', sans-serif;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#get-started-button{
+    position: absolute;
+    top: 42%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    background-color: #14a943;
+    color: #000000;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 3px solid black;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+#browse-listings-button{
+  position: absolute;
+  top: 42%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  background-color: #14a943;
+  color: #000000;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 3px solid black;
+  border-radius: 10px;
+  white-space: nowrap;
+}

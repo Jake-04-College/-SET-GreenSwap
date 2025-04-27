@@ -1,0 +1,16 @@
+.item-information-container{
+    display: grid;
+    border: 2px solid black;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.257);
+    border-radius: 20px;
+    height: 30%;
+    width: 40%;
+}
+
+.item-information-container h3{
+    padding-left: 15px;
+}
+
+.item-information-container p{
+    padding-left: 15px;
+}
