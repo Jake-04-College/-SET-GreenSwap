@@ -1,15 +1,4 @@
 <?php
-enum CategoryEnums: string
-{
-    case Plants = 'Plant';
-    case Toys = 'Toys';
-    case Outdoorfurniture = 'Outdoor furniture';
-    case Indoorfurniture = 'Indoor Furniture';
-    case Clothing = 'Clothing';
-    case Books = 'Books';
-    case Cars = 'Cars';
-}
-
 class Listing
 {
     private string $productID;
@@ -17,19 +6,15 @@ class Listing
     private string $listingTitle;
     private string $listingDesc;
     private float $listingPrice;
-    private CategoryEnums $listingCategory;
     private string $listingDate;
-
     private string $imagePath;
 
-    // Constructor - now accepts a User object
-    public function __construct(string $productID, string $listingTitle, string $listingDesc, float $listingPrice, CategoryEnums $listingCategory, string $imagePath)
+    public function __construct(string $productID, string $listingTitle, string $listingDesc, float $listingPrice, string $imagePath)
     {
         $this->productID = $productID;
         $this->listingTitle = $listingTitle;
         $this->listingDesc = $listingDesc;
         $this->listingPrice = $listingPrice;
-        $this->listingCategory = $listingCategory;
         $this->imagePath = $imagePath;
     }
 
@@ -52,11 +37,6 @@ class Listing
     public function getListingPrice(): float
     {
         return $this->listingPrice;
-    }
-
-    public function getListingCategory(): string
-    {
-        return $this->listingCategory->value;
     }
 
 
@@ -91,10 +71,6 @@ class Listing
         $this->listingPrice = $listingPrice;
     }
 
-    public function setListingCategory(CategoryEnums $listingCategory): void
-    {
-        $this->listingCategory = $listingCategory;
-    }
 
     public function setImagePath(string $imagePath): void
     {

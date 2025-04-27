@@ -10,6 +10,8 @@
 function getItems($categoryName)
 {
     include __DIR__ . '/../private/database_connection.php';
+    include_once 'objects/Listings.php';
+
     try {
         $conn = new PDO($dsn, $username, $password, $options);
         $sql = "SELECT product_id,product_name, product_desc, price, product_image_link FROM products WHERE product_category = ? LIMIT 12;";
@@ -17,17 +19,28 @@ function getItems($categoryName)
         $stmt->bindParam(1, $categoryName, PDO::PARAM_STR);
         $stmt->execute();
 
-        $Product = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($Product as $row) {
+        $Listing = [];
+
+        foreach($rows as $row){
+            $Listing[] = new Listing(
+                $row['product_id'],
+                $row['product_name'],
+                $row['product_desc'],
+                $row['price'],
+                $row['product_image_link']);
+        }
+
+        foreach ($Listing as $row) {
             echo ' 
                     <div class="image-box">
-                        <img src=" images\productimages' . $row["product_image_link"] . '" width="290" height="240" alt="' . $row["product_name"] . '">
-                        <h3>' . $row["product_name"] . '</h3> 
-                        <p>' . $row["product_desc"] . '</p>
+                        <img src=" images\productimages' . htmlspecialchars($row->getImagePath()) . '" width="290" height="240" alt="' . htmlspecialchars($row->getListingTitle()) . '">
+                        <h3>' . htmlspecialchars($row->getListingTitle()) . '</h3> 
+                        <p>' . htmlspecialchars($row->getListingDesc()). '</p>
                         <div class="buy">
-                            <div class="price"><h3>€' . number_format($row["price"], 2) . '</h3></div>
-                            <div class="buy-button"><a href = "itemListing.php?id=' . $row["product_id"] . '"><button><h3>Buy</h3></button></a></div>
+                            <div class="price"><h3>€' . number_format($row->getListingPrice(), 2) . '</h3></div>
+                            <div class="buy-button"><a href = "itemListing.php?id=' . htmlspecialchars($row->getProductID()) . '"><button><h3>Buy</h3></button></a></div>
                         </div>  
                     </div>';
         }
@@ -35,7 +48,8 @@ function getItems($categoryName)
         echo "Database error: " . $e->getMessage();
     }
 }
-
+?>
+<?php
 /**
  * Searches the DB howitworks table and takes the three rows in that table and displays them to the index page under the How It Works section
  * @return void
@@ -43,6 +57,7 @@ function getItems($categoryName)
 function getHowitWorks()
 {
     include __DIR__ . '/../private/database_connection.php';
+    include 'objects/HowitWorks.php';
 
     try {
         $conn = new PDO($dsn, $username, $password, $options);
@@ -51,14 +66,24 @@ function getHowitWorks()
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $howItWorks = [];
 
-        $howItWorks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach($rows as $row){
+            $howItWorks[] = new HowitWorks(
+                $row['item_name'],
+                $row['item_desc'],
+                $row['photo_link']
+            );
+        }
+
 
         foreach ($howItWorks as $row) {
             echo '<div class="works">
-            <img src="' . htmlspecialchars($row["photo_link"]) . '" width="120" height="120" alt="' . htmlspecialchars($row["item_name"]) . '">
-            <h4>' . htmlspecialchars($row["item_name"]) . '</h4>
-            <p>' . htmlspecialchars($row["item_desc"]) . '</p>
+            <img src="' . htmlspecialchars($row->getItemImagePath()) . '" width="120" height="120" alt="' . htmlspecialchars($row->getItemName()) . '">
+            <h4>' . htmlspecialchars($row->getItemName()) . '</h4>
+            <p>' . htmlspecialchars($row->getItemDesc()) . '</p>
         </div>';
         }
 
@@ -66,6 +91,8 @@ function getHowitWorks()
         echo "Database error: " . $e->getMessage();
     }
 }
+?>
+<?php
 /**
  * SQL quary to get all of the listings where the product category matches the paramater set.
  * Used for indivugal listing pages to list all products for that category. 
@@ -75,6 +102,8 @@ function getHowitWorks()
 function getAllItems($categoryName)
 {
     include __DIR__ . '/../private/database_connection.php';
+    include_once 'objects/Listings.php';
+
     try {
         $conn = new PDO($dsn, $username, $password, $options);
         $sql = "SELECT product_id,product_name, product_desc, price, product_image_link FROM products WHERE product_category = ?";
@@ -82,21 +111,29 @@ function getAllItems($categoryName)
         $stmt->bindParam(1, $categoryName, PDO::PARAM_STR);
         $stmt->execute();
 
-        $Product = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($Product as $row) {
-            echo '<div class="image-box">
-                        <img src=" ..\images\productimages' . $row["product_image_link"] . '" width="290" height="240" alt="' . $row["product_name"] . '">
-                        <h3>' . $row["product_name"] . '</h3> 
-                        <p>' . $row["product_desc"] . '</p>
+        $Listing = [];
+
+        foreach($rows as $row){
+            $Listing[] = new Listing(
+                $row['product_id'],
+                $row['product_name'],
+                $row['product_desc'],
+                $row['price'],
+                $row['product_image_link']);
+        }
+
+        foreach ($Listing as $row) {
+            echo ' 
+                    <div class="image-box">
+                        <img src=" ..\images\productimages' . htmlspecialchars($row->getImagePath()) . '" width="290" height="240" alt="' . htmlspecialchars($row->getListingTitle()) . '">
+                        <h3>' . htmlspecialchars($row->getListingTitle()) . '</h3> 
+                        <p>' . htmlspecialchars($row->getListingDesc()). '</p>
                         <div class="buy">
-                            <div class="price"><h3>€' . number_format($row["price"], 2) . '</h3></div>
-                            <div class="buy-button">
-                                <a href="..\itemListing.php?id=' . $row["product_id"] . '">
-                                    <button><h3>Buy</h3></button>
-                                </a>
-                            </div>
-                        </div>
+                            <div class="price"><h3>€' . number_format($row->getListingPrice(), 2) . '</h3></div>
+                            <div class="buy-button"><a href = "itemListing.php?id=' . htmlspecialchars($row->getProductID()) . '"><button><h3>Buy</h3></button></a></div>
+                        </div>  
                     </div>';
         }
     } catch (PDOException $e) {
@@ -113,6 +150,7 @@ function getAllItems($categoryName)
 function fillInformation($productID)
 {
     include __DIR__ . '/../private/database_connection.php';
+    include 'objects/Listings.php';
 
     try {
         $conn = new PDO($dsn, $username, $password, $options);
@@ -121,9 +159,11 @@ function fillInformation($productID)
         $stmt->bindParam(1, $productID, PDO::PARAM_STR);
         $stmt->execute();
 
-        $Product = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($Product as $row) {
+    
+
+        foreach ($product as $row) {
             echo '<div class = "left-content">
             <img id="imagebox" src=" images\productimages' . $row["product_image_link"] . '" width="290" height="240" alt="' . $row["product_name"] . '">
             <br>
@@ -215,11 +255,11 @@ function fillInformation($productID)
         </div>
     </div>';
         }
-    } catch (PDOException $e) {
+    }
+        catch (PDOException $e) {
         echo "Database error: " . $e->getMessage();
     }
 }
-
 
 /**
  * Used to check if the column is_featured True (1) or False (0) if true echo information to the page 
@@ -229,6 +269,7 @@ function getFeaturedItems()
 {
 
     include __DIR__ . '/../private/database_connection.php';
+    include 'objects/Listings.php';
 
     try {
         $conn = new PDO($dsn, $username, $password, $options);
@@ -236,9 +277,15 @@ function getFeaturedItems()
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
-        $Product = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($Product as $row) {
+        $Listing = [];
+
+        foreach($rows as $row){
+
+        }
+
+        foreach ($Listing as $row) {
             echo '<div class="image-box">
                             <img src=" images\productimages' . $row["product_image_link"] . '" width="290" height="240" alt="' . $row["product_name"] . '">
                             <h3>' . $row["product_name"] . '</h3> 
@@ -256,8 +303,7 @@ function getFeaturedItems()
     } catch (PDOException $e) {
         echo "Database error: " . $e->getMessage();
     }
-}
-;
+};
 
 
 function getProductsforSearchbar()

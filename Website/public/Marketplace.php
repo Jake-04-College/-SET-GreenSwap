@@ -45,7 +45,7 @@
 
     <h2> Toys </h2>
     <div class="image-container">
-        <?php getItems("Toy") ?>
+        <?php getItems("Toys") ?>
     </div>
 
     <div class="view-more-button">
